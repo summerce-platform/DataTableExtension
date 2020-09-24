@@ -12,6 +12,11 @@
         // 버튼 표시 및 클릭 이벤트 달기
         $("#configure-button").show();
         $("#configure-button").on("click", () => configure());
+
+        tableau.extensions.settings.addEventListener(tableau.TableauEventType.SettingsChanged, (settingsEvent) => {
+          updateExtensionBasedOnSettings(settingsEvent.newSettings);
+        });
+
       },
       // 태블로 초기화 중 에러가 발생했을 때 로그
       function (err) {
@@ -279,4 +284,13 @@
       console.log(error);
     }
   };
+
+  function updateExtensionBasedOnSettings (settings) {
+    if (settings.selectedDatasources) {
+      activeDatasourceIdList = JSON.parse(settings.selectedDatasources);
+      $('#datasourceCount').text(activeDatasourceIdList.length);
+    }
+  }
+
+
 })();
