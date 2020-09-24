@@ -24,7 +24,7 @@
   var configure = () => {
     // 다이얼로그 HTML 파일 경로
     const dialogURL =
-      "https://chash.in/DataTableExtension/ConfigureDialog.html";
+      "https://summerce-platform.github.io/DataTableExtension/ConfigureDialog.html";
 
     /* 
       다이얼로그에게 전달해주고 싶은 값(문자열만 가능!)
