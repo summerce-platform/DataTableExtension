@@ -1,0 +1,19 @@
+/* 선택된 행의 텍스트 색 */
+table.dataTable tbody tr.selected,
+table.dataTable tbody th.selected,
+table.dataTable tbody td.selected {
+  color: black !important;
+}
+
+/* 선택된 행의 배경 색 */
+table.dataTable tbody > tr.selected,
+table.dataTable tbody > tr > .selected {
+  background-color: #b7e3ff !important;
+}
+
+/* 선택된 행의 <a> 태그 색 */
+table.dataTable tbody tr.selected a,
+table.dataTable tbody th.selected a,
+table.dataTable tbody td.selected a {
+  color: black;
+}

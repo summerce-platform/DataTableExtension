@@ -1,0 +1,12 @@
+body {
+  padding: 16px;
+}
+
+.arrange-buttons {
+  display: block;
+}
+
+.arrange-buttons input {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
