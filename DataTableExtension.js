@@ -19,7 +19,7 @@
           console.log(currentSettings);
           var savedSettings = {
             sheetName : currentSettings.selectedWorksheet,
-            columns: currentSettings.selectedColumns
+            columns: currentSettings.selectedColumn
           };
           getDataBy(savedSettings).then((sheetData) => {
             // 테이블이 보이게 한 뒤 - 초기에 display: none 설정되어 있음
