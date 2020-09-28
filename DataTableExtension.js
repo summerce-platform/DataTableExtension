@@ -25,7 +25,7 @@
             // 테이블이 보이게 한 뒤 - 초기에 display: none 설정되어 있음
             $("#data-table").show();
             // 데이터 테이블 설정할 때 바로 넣어주면 되는 형태의 columns를 얻음
-            var columns = setColumns(payload.columns);
+            var columns = setColumns(savedSettings.columns);
             // 데이터 테이블 초기화
             renderDataTable(columns, sheetData);
           });
