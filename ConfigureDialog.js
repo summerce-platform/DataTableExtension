@@ -1,4 +1,6 @@
 (function () {
+  const worksheetSettingsKey = 'selectedWorksheet';
+  const columnsSettingsKey = 'selectedColumn';
   var selectedWorksheet;
   var columns = [];
 
@@ -46,6 +48,7 @@
   var onSelectWorksheet = (sheetName, idx) => {
     // 전역 변수에 선택한 워크시트 저장
     selectedWorksheet = sheetName;
+    tableau.extensions.settings.set('sheet',selectedWorksheet);
     // 버튼 선택 효과 (outline-primary -> primary)
     $("input[id^='sheet-']").attr("class", "btn btn-outline-primary btn-sm");
     $("#sheet-" + idx).attr("class", "btn btn-primary btn-sm");
@@ -160,9 +163,11 @@
       
       // 다이얼로그를 종료하며 closePayload 정보를 담아 부모 페이지에 전송
       tableau.extensions.ui.closeDialog(JSON.stringify(closePayload));
-      tableau.extensions.settings.set(closePayload.sheetName);
-      tableau.extensions.settings.set(closePayload.columns);
-      console.log(closePayload.columns);
+      let currentSettings = tableau.extensions.setting.getAll();
+      tableau.extensions.settings.set(worksheetSettingsKey, JSON.stringify(selectedWorksheet));
+      tableau.extensions.settings.set(columnsSettingsKey, JSON.stringify(selectedColumn));
+
+
     }
   };
 
