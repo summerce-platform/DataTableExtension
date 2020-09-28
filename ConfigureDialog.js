@@ -162,17 +162,13 @@
       };
       
       // 다이얼로그를 종료하며 closePayload 정보를 담아 부모 페이지에 전송
-      // tableau.extensions.ui.closeDialog(JSON.stringify(closePayload));
-
-
-        let currentSettings = tableau.extensions.settings.getAll();
-        tableau.extensions.settings.set(worksheetSettingsKey, JSON.stringify(selectedWorksheet));
-        tableau.extensions.settings.set(columnsSettingsKey, JSON.stringify(columns));
-        tableau.extensions.settings.saveAsync().then((newSavedSettings)=> {
-        tableau.extensions.ui.closeDialog("test");
+      tableau.extensions.settings.saveAsync().then((newSavedSettings)=>{
+        tableau.extensions.ui.closeDialog(JSON.stringify(closePayload));
       })
       
-  
+
+
+
            
 
 
