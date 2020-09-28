@@ -26,7 +26,6 @@
     );
   });
   /////
-  let unregisterEventHandlerFunction;
   /////
   // 구성 버튼을 눌렀을 때 구성 다이얼로그 호출
   var configure = () => {
