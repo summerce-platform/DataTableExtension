@@ -1,3 +1,8 @@
+
+
+
+
+
 (function () {
   $(document).ready(function () {
     // 태블로 라이브러리 초기화
@@ -8,12 +13,28 @@
         // 이전에 구성을 했었다면 쿠키 혹은 tableau settings에 정보가 있으므로
         // 구성 버튼을 보이게하지 않고 저장된 값 기반으로 실행해야함
         // ===========================================================
-         let currentSettings = tableau.extensions.settings.getAll();
-        console.log(currentSettings);
-
-        // 버튼 표시 및 클릭 이벤트 달기
-        $("#configure-button").show();
-        $("#configure-button").on("click", () => configure());
+        let currentSettings = tableau.extensions.settings.getAll();
+        if(currentSettings) {
+          // 이미 설정값이 있는 경우 
+          console.log(currentSettings);
+          var savedSettings = {
+            sheetName : currentSettings.selectedWorksheet,
+            columns: currentSettings.selectedColumns
+          };
+          getDataBy(savedSettings).then((sheetData) => {
+            // 테이블이 보이게 한 뒤 - 초기에 display: none 설정되어 있음
+            $("#data-table").show();
+            // 데이터 테이블 설정할 때 바로 넣어주면 되는 형태의 columns를 얻음
+            var columns = setColumns(payload.columns);
+            // 데이터 테이블 초기화
+            renderDataTable(columns, sheetData);
+          });
+        } else {
+          // 아직 설정한 값이 없는 경우
+          // 버튼 표시 및 클릭 이벤트 달기
+          $("#configure-button").show();
+          $("#configure-button").on("click", () => configure());
+        }
       },
       // 태블로 초기화 중 에러가 발생했을 때 로그
       function (err) {
@@ -85,8 +106,7 @@
     // (참고) tableau settings는 워크북에 정보가 저장됨
     // ===========================================================
 
-    // tableau.extensions.settings.set(payloadString); 
-    // console.log(payloadString);
+
 
 
 
