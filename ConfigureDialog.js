@@ -159,6 +159,10 @@
       };
       // 다이얼로그를 종료하며 closePayload 정보를 담아 부모 페이지에 전송
       tableau.extensions.ui.closeDialog(JSON.stringify(closePayload));
+      tableau.extensions.settings.set(JSON.stringify(closePayload));
+      console.log(closePayload);
     }
   };
+
+
 })();
