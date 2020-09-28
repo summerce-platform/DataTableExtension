@@ -83,8 +83,8 @@
     // (참고) tableau settings는 워크북에 정보가 저장됨
     // ===========================================================
 
-    tableau.extensions.settings.set(payloadString); 
-    console.log(payloadString);
+    // tableau.extensions.settings.set(payloadString); 
+    // console.log(payloadString);
 
 
 
