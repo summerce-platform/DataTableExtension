@@ -1,7 +1,6 @@
 (function () {
   /////
-  let savedInfo;
-  let unregisterHandlerFunctions = [];
+
   /////
   $(document).ready(function () {
     // 태블로 라이브러리 초기화
@@ -12,17 +11,7 @@
         // 이전에 구성을 했었다면 쿠키 혹은 tableau settings에 정보가 있으므로
         // 구성 버튼을 보이게하지 않고 저장된 값 기반으로 실행해야함
         // ===========================================================
-        let currentSettings = tableau.extensions.settings.getAll();
-        fetchFilter();
-        fetchCurrentSettings();
-        if (typeof currentSettings.sheet !== "undefined") {
-          $('#inactive').hide();
-          
-          //updateExtensionBasedOnSettings(currentSettings.newSettings);
-          parseInfo(currentSettings); 
-          
-                 
-        }
+    
 
 
 
