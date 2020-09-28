@@ -1,4 +1,8 @@
 (function () {
+  /////
+  let savedInfo;
+  let unregisterHandlerFunctions = [];
+  /////
   $(document).ready(function () {
     // 태블로 라이브러리 초기화
     tableau.extensions.initializeAsync({ configure: configure }).then(
@@ -8,15 +12,23 @@
         // 이전에 구성을 했었다면 쿠키 혹은 tableau settings에 정보가 있으므로
         // 구성 버튼을 보이게하지 않고 저장된 값 기반으로 실행해야함
         // ===========================================================
+        let currentSettings = tableau.extensions.settings.getAll();
+        fetchFilter();
+        fetchCurrentSettings();
+        if (typeof currentSettings.sheet !== "undefined") {
+          $('#inactive').hide();
+          
+          //updateExtensionBasedOnSettings(currentSettings.newSettings);
+          parseInfo(currentSettings); 
+          
+                 
+        }
+
+
 
         // 버튼 표시 및 클릭 이벤트 달기
         $("#configure-button").show();
         $("#configure-button").on("click", () => configure());
-
-        tableau.extensions.settings.addEventListener(tableau.TableauEventType.SettingsChanged, (settingsEvent) => {
-          updateExtensionBasedOnSettings(settingsEvent.newSettings);
-        });
-
       },
       // 태블로 초기화 중 에러가 발생했을 때 로그
       function (err) {
@@ -24,7 +36,9 @@
       }
     );
   });
-
+  /////
+  let unregisterEventHandlerFunction;
+  /////
   // 구성 버튼을 눌렀을 때 구성 다이얼로그 호출
   var configure = () => {
     // 다이얼로그 HTML 파일 경로
@@ -60,6 +74,7 @@
       });
   };
 
+
   // 다이얼로그가 정상적 흐름으로 종료되면 실행 될 함수
   var onDialogFinished = (payloadString) => {
     // 다이얼로그가 문자열로 준 데이터를 JSON 표기로 파싱
@@ -88,6 +103,12 @@
     // 설정 값들을 쿠키 혹은 tableau settings에 저장하고
     // (참고) tableau settings는 워크북에 정보가 저장됨
     // ===========================================================
+    /// jh. payloadstring을 setting에 저장?
+      tableau.extensions.settings.set(payloadString); 
+      console.log(payloadString);
+
+
+
 
     // 다이얼로그에서 반환된 값을 바탕으로 태블로 라이브러리로부터
     // 데이터를 가져와서 데이터 테이블 초기화(데이터 삽입)
@@ -138,6 +159,7 @@
       return data;
     });
   };
+
 
   // HTML Table 요소에 접근해 상단 컬럼명들 수정 및
   // DataTables 초기화 용 컬럼 배열 반환
@@ -285,12 +307,13 @@
     }
   };
 
-  function updateExtensionBasedOnSettings (settings) {
-    if (settings.selectedDatasources) {
-      activeDatasourceIdList = JSON.parse(settings.selectedDatasources);
-      $('#datasourceCount').text(activeDatasourceIdList.length);
-    }
-  }
+
+
+
+
+
+
+
 
 
 })();
