@@ -162,10 +162,8 @@
       tableau.extensions.ui.closeDialog(JSON.stringify(closePayload));
       // tableau.extensions.settings.set(closePayload[sheetName]);
       // tableau.extensions.settings.set(closePayload[columns]);
-      console.log(closePayload);
-      console.log(JSON.stringify(closePayload));
-      console.log(closePayload[sheetName]);
-      console.log(JSON.stringify(closePayload)[sheetName]);
+      console.log(closePayload.sheetName);
+      console.log(closePayload.columns);
     }
   };
 
