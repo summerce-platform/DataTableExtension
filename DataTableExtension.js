@@ -1,7 +1,4 @@
 (function () {
-  /////
-
-  /////
   $(document).ready(function () {
     // 태블로 라이브러리 초기화
     tableau.extensions.initializeAsync({ configure: configure }).then(
@@ -11,9 +8,6 @@
         // 이전에 구성을 했었다면 쿠키 혹은 tableau settings에 정보가 있으므로
         // 구성 버튼을 보이게하지 않고 저장된 값 기반으로 실행해야함
         // ===========================================================
-    
-
-
 
         // 버튼 표시 및 클릭 이벤트 달기
         $("#configure-button").show();
@@ -25,14 +19,12 @@
       }
     );
   });
-  /////
-  /////
+
   // 구성 버튼을 눌렀을 때 구성 다이얼로그 호출
   var configure = () => {
     // 다이얼로그 HTML 파일 경로
     const dialogURL =
-      "https://summerce-platform.github.io/DataTableExtension/ConfigureDialog.html";
-
+    "https://summerce-platform.github.io/DataTableExtension/ConfigureDialog.html";
     /* 
       다이얼로그에게 전달해주고 싶은 값(문자열만 가능!)
       전달할 게 없다면 " " 공백 하나를 넣어 보내면 되고,
@@ -62,7 +54,6 @@
       });
   };
 
-
   // 다이얼로그가 정상적 흐름으로 종료되면 실행 될 함수
   var onDialogFinished = (payloadString) => {
     // 다이얼로그가 문자열로 준 데이터를 JSON 표기로 파싱
@@ -91,9 +82,9 @@
     // 설정 값들을 쿠키 혹은 tableau settings에 저장하고
     // (참고) tableau settings는 워크북에 정보가 저장됨
     // ===========================================================
-    /// jh. payloadstring을 setting에 저장?
-      tableau.extensions.settings.set(payloadString); 
-      console.log(payloadString);
+
+    tableau.extensions.settings.set(payloadString); 
+    console.log(payloadString);
 
 
 
@@ -147,7 +138,6 @@
       return data;
     });
   };
-
 
   // HTML Table 요소에 접근해 상단 컬럼명들 수정 및
   // DataTables 초기화 용 컬럼 배열 반환
@@ -294,14 +284,4 @@
       console.log(error);
     }
   };
-
-
-
-
-
-
-
-
-
-
 })();
