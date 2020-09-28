@@ -8,6 +8,8 @@
         // 이전에 구성을 했었다면 쿠키 혹은 tableau settings에 정보가 있으므로
         // 구성 버튼을 보이게하지 않고 저장된 값 기반으로 실행해야함
         // ===========================================================
+         let currentSettings = tableau.extensions.settings.getAll();
+        console.log(currentSettings);
 
         // 버튼 표시 및 클릭 이벤트 달기
         $("#configure-button").show();
