@@ -157,10 +157,11 @@
         sheetName: selectedWorksheet,
         columns: columns,
       };
+      
       // 다이얼로그를 종료하며 closePayload 정보를 담아 부모 페이지에 전송
       tableau.extensions.ui.closeDialog(JSON.stringify(closePayload));
-      tableau.extensions.settings.set(JSON.stringify(closePayload).sheetName.val());
-      tableau.extensions.settings.set(JSON.stringify(closePayload).columns.val());
+      tableau.extensions.settings.set(closePayload[sheetName]);
+      tableau.extensions.settings.set(closePayload[columns]);
       console.log(closePayload);
     }
   };
