@@ -165,7 +165,7 @@
       tableau.extensions.settings.set(worksheetSettingsKey, JSON.stringify(selectedWorksheet));
       tableau.extensions.settings.set(columnsSettingsKey, JSON.stringify(columns));
       tableau.extensions.settings.saveAsync().then((newSavedSettings)=> {
-        tableau.extensions.ui.closeDialog("test");
+        tableau.extensions.ui.closeDialog(JSON.stringify(closePayload));
       })
       
 
