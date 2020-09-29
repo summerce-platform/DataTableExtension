@@ -99,7 +99,7 @@
     targetArea.empty();
     columns.forEach((column, idx) => {
       // 버튼 생성
-      let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
+      let btn = makeButton(column.fieldName, idx, () =>
         // 버튼 클릭 시 실행 될 함수
         onSelectImageColumn(column.fieldName, idx)
       );
