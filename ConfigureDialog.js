@@ -86,6 +86,7 @@
 
   // 세부 설정 영역 표시
   var showSettingDetailsArea = () => {
+    $("#select-column-area").show();
     $("#select-image-column-area").show();
     $("#select-layout-area").show();
     // id가 "select-image-column"인 영역에 버튼들 생성
@@ -95,8 +96,8 @@
 
   ////jh. 컬럼 선택하는 부분
   var selectColumnButtons = () => {
-    var targetArea =$("select-column");
-    targetArea.empty();
+    var targetArea2 =$("select-column");
+    targetArea2.empty();
     columns.forEach((column, idx) => {
       // 버튼 생성
       let btn = makeButton(column.fieldName,"column-col", idx, () =>
@@ -104,7 +105,7 @@
         onSelectColumn(column.fieldName, idx)
       );
       // 버튼 삽입
-      targetArea.append(btn);
+      targetArea2.append(btn);
     });
   }
 
@@ -112,7 +113,7 @@
  var onSelectColumn = (fieldName, idx) => {
   // 버튼 선택 효과 (outline-primary -> primary)
   $("input[id^='columncol-']").attr("class", "btn btn-outline-primary btn-sm");
-  $("#imgcol-" + idx).attr("class", "btn btn-primary btn-sm");}
+  $("#columncol-" + idx).attr("class", "btn btn-primary btn-sm");}
   // 다른 걸 이미 선택했었을 수도 있으니 isImageURL 값을 모두 false로 초기화
   
 
