@@ -99,7 +99,7 @@
     targetArea.empty();
     columns.forEach((column, idx) => {
       // 버튼 생성
-      let btn = makeButton(column.fieldName, idx, () =>
+      let btn = makeButton(column.fieldName,"column-col", idx, () =>
         // 버튼 클릭 시 실행 될 함수
         onSelectImageColumn(column.fieldName, idx)
       );
@@ -107,6 +107,19 @@
       targetArea.append(btn);
     });
   }
+
+  //////////////////  // 이미지 컬럼 선택 시 실행 될 함수
+      // 워크시트들의 이름으로 버튼들 생성
+      columns.forEach((column, idx) => {
+        // 발견한 시트마다 버튼 생성
+        let btn = makeButton(columns.fieldName, "column-", idx, () =>
+          // 버튼마다 클릭 이벤트
+          onSelectWorksheet(column.fieldName, idx)
+        );
+        // 만든 버튼을 HTML 공간에 삽입
+        $("#select-column-area").append(btn);
+      });
+    });
 
 
   // 이미지 선택 컬럼 버튼들 생성
