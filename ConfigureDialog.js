@@ -89,8 +89,25 @@
     $("#select-image-column-area").show();
     $("#select-layout-area").show();
     // id가 "select-image-column"인 영역에 버튼들 생성
+    selectColumnButtons();
     selectImageColumnButtons();
   };
+
+  ////jh. 컬럼 선택하는 부분
+  var selectColumnButtons = () => {
+    var targetArea =$("select-column");
+    targetArea.empty();
+    columns.forEach((column, idx) => {
+      // 버튼 생성
+      let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
+        // 버튼 클릭 시 실행 될 함수
+        onSelectImageColumn(column.fieldName, idx)
+      );
+      // 버튼 삽입
+      targetArea.append(btn);
+    });
+  }
+
 
   // 이미지 선택 컬럼 버튼들 생성
   var selectImageColumnButtons = () => {
