@@ -84,8 +84,9 @@
         });
       });
 ////컬럼정보 가져온거 기반해서 컬럼 선택하기
-        console.log(JSON.stringify(columns.fieldName));
-    });
+
+        console.log(summary.columns);
+        console.log(summary.columns[fieldName]);    });
   };
 
   // 세부 설정 영역 표시
