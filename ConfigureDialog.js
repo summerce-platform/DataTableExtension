@@ -71,12 +71,8 @@
     );
 
 
-    ///만들어야 하는 구문
-    ///1.forach구문으로 가져온 컬럼 정보를 일단 이미지쪽 가기 전에 버튼으로 만든다
-    ///2. 버튼을 만들어서 그것을 선택하게 한다
-    ///3. 선택된 컬럼들로 이미지 컬럼으로 지정할 컬럼을 결정하게 한다
+    ///if문 만들어서 다
     // 찾은 워크시트에서 컬럼 정보 가져오기
-
     return await worksheet.getSummaryDataAsync().then((summary) => {
       // 각 컬럼을
       summary.columns.forEach((column) => {
@@ -87,57 +83,19 @@
           altText: null,
         });
       });
+////컬럼정보 가져온거 기반해서 컬럼 선택하기
+        console.log(fieldName);
+        console.log(columns.fieldName);
     });
   };
 
   // 세부 설정 영역 표시
   var showSettingDetailsArea = () => {
-    $("#select-column-area").show();
     $("#select-image-column-area").show();
     $("#select-layout-area").show();
     // id가 "select-image-column"인 영역에 버튼들 생성
-    selectColumnButtons();
     selectImageColumnButtons();
   };
-
-
-///
-  
-  // 컬럼 선택 컬럼 버튼들 생성
-  var selectColumnButtons = () => {
-    var targetArea2 = $("#select-column");
-    // 이미 버튼이 존재할 경우 삭제
-    targetArea2.empty();
-    /*
-      each column = {
-        dataType : "string"
-        fieldName : "GOODS_CODE"
-        index : 0
-        isReferenced : true
-      }
-    */
-    columns.forEach((column, idx) => {
-      // 버튼 생성
-      let btn = makeButton(column.fieldName, "col-", idx, () =>
-        // 버튼 클릭 시 실행 될 함수
-        onSelectColumn(column.fieldName, idx)
-      );
-      // 버튼 삽입
-      targetArea2.append(btn);
-    });
-  };
-///
-  // 컬럼 선택 시 실행 될 함수
-  var onSelectColumn = (fieldName, idx) => {
-    // 버튼 선택 효과 (outline-primary -> primary)
-    $("input[id^='col-']").attr("class", "btn btn-outline-primary btn-sm");
-    $("#col-" + idx).attr("class", "btn btn-primary btn-sm");
-
-    // 선택된 컬럼에 한해서만 isImageURL = true
-    var selectedColumn = columns.find((col) => col.fieldName === fieldName);
-   
-  };
-
 
   
   // 이미지 선택 컬럼 버튼들 생성
@@ -153,11 +111,11 @@
         isReferenced : true
       }
     */
-   onSelectColumn.forEach((onSelectColumn, idx) => {
+    columns.forEach((column, idx) => {
       // 버튼 생성
-      let btn = makeButton(onSelectColumn.fieldName, "imgcol-", idx, () =>
+      let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
         // 버튼 클릭 시 실행 될 함수
-        onSelectImageColumn(onSelectColumn.fieldName, idx)
+        onSelectImageColumn(column.fieldName, idx)
       );
       // 버튼 삽입
       targetArea.append(btn);
@@ -170,12 +128,12 @@
     $("input[id^='imgcol-']").attr("class", "btn btn-outline-primary btn-sm");
     $("#imgcol-" + idx).attr("class", "btn btn-primary btn-sm");
     // 다른 걸 이미 선택했었을 수도 있으니 isImageURL 값을 모두 false로 초기화
-    onSelectColumn.forEach((col) => {
+    columns.forEach((col) => {
       col.isImageURL = false;
     });
 
     // 선택된 컬럼에 한해서만 isImageURL = true
-    var selectedColumn = onSelectColumn.find((col) => col.fieldName === fieldName);
+    var selectedColumn = columns.find((col) => col.fieldName === fieldName);
     selectedColumn.isImageURL = true;
   };
 
@@ -192,7 +150,7 @@
       // 이미지 컬럼 상단 대체 텍스트 값 받아오기
       var imgAltText = $("#alt-text").val();
       // 이미지 컬럼 찾기
-      var imgColumn = onSelectColumn.find((col) => col.isImageURL === true);
+      var imgColumn = columns.find((col) => col.isImageURL === true);
 
       // 이미지 컬럼이 존재하면
       if (imgColumn) {
@@ -206,7 +164,7 @@
       // closePayload에 지금껏 선택했던 sheetName과 columns 담기
       var closePayload = {
         sheetName: selectedWorksheet,
-        columns: onSelectColumn,
+        columns: columns,
       };
       
       // 다이얼로그를 종료하며 closePayload 정보를 담아 부모 페이지에 전송
