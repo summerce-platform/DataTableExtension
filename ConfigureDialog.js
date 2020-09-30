@@ -153,11 +153,11 @@
           isReferenced : true
         }
       */
-      columns.forEach((column, idx) => {
+      columns.forEach((myColumn, idx) => {
         // 버튼 생성
-        let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
+        let btn = makeButton(myColumn.fieldName, "imgcol-", idx, () =>
           // 버튼 클릭 시 실행 될 함수
-          onSelectImageColumn(column.fieldName, idx)
+          onSelectImageColumn(myColumn.fieldName, idx)
         );
         // 버튼 삽입
         targetArea.append(btn);
