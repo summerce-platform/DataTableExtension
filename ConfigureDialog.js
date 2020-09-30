@@ -125,36 +125,40 @@
     console.log(myColumn);
     // console.log($("#select-column").val());
     $("#test1").text(myColumn);
+
+
+ // 이미지 선택 컬럼 버튼들 생성
+ 
+  var targetArea = $("#select-image-column");
+  // 이미 버튼이 존재할 경우 삭제
+  targetArea.empty();
+  /*
+    each column = {
+      dataType : "string"
+      fieldName : "GOODS_CODE"
+      index : 0
+      isReferenced : true
+    }
+  */
+
+  myColumn.forEach((column, idx) => {
+    // 버튼 생성
+    let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
+      // 버튼 클릭 시 실행 될 함수
+      onSelectImageColumn(column.fieldName, idx)
+    );
+    // 버튼 삽입
+    targetArea.append(btn);
+  });
+
+
   })
 
 };
 
 
   
-  // 이미지 선택 컬럼 버튼들 생성
-  var selectImageColumnButtons = () => {
-    var targetArea = $("#select-image-column");
-    // 이미 버튼이 존재할 경우 삭제
-    targetArea.empty();
-    /*
-      each column = {
-        dataType : "string"
-        fieldName : "GOODS_CODE"
-        index : 0
-        isReferenced : true
-      }
-    */
-
-    myColumn.forEach((column, idx) => {
-      // 버튼 생성
-      let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
-        // 버튼 클릭 시 실행 될 함수
-        onSelectImageColumn(column.fieldName, idx)
-      );
-      // 버튼 삽입
-      targetArea.append(btn);
-    });
-  };
+ 
 
   // 이미지 컬럼 선택 시 실행 될 함수
   var onSelectImageColumn = (fieldName, idx) => {
