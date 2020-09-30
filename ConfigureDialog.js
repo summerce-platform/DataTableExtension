@@ -119,10 +119,10 @@
   columns.forEach((column, idx) => {
     ///select box에 컬럼 넣기
       $("#select-column").append('<option value="'+column.fieldName+'">'+column.fieldName+'</option>');
-      
   });
   $("#submitCol").click(function(){
     var myColumn = $("#select-column").val();
+    
     console.log(myColumn);
     // console.log($("#select-column").val());
     $("#test1").text(myColumn);
@@ -145,7 +145,7 @@
         isReferenced : true
       }
     */
-    myColumn.forEach((column, idx) => {
+    columns.forEach((column, idx) => {
       // 버튼 생성
       let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
         // 버튼 클릭 시 실행 될 함수
@@ -200,10 +200,11 @@
         var closePayload = {
           sheetName: selectedWorksheet,
           columns: columns
-        };
+        }
         
-      }
+      };
  
+      
       // 다이얼로그를 종료하며 closePayload 정보를 담아 부모 페이지에 전송
       // let currentSettings = tableau.extensions.settings.getAll();
       // tableau.extensions.settings.saveAsync().then((newSavedSettings)=>{
