@@ -162,6 +162,20 @@
         // 버튼 삽입
         targetArea.append(btn);
       });
+
+      var onSelectImageColumn = (fieldName, idx) => {
+        // 버튼 선택 효과 (outline-primary -> primary)
+        $("input[id^='imgcol-']").attr("class", "btn btn-outline-primary btn-sm");
+        $("#imgcol-" + idx).attr("class", "btn btn-primary btn-sm");
+        // 다른 걸 이미 선택했었을 수도 있으니 isImageURL 값을 모두 false로 초기화
+        columns.forEach((col) => {
+          col.isImageURL = false;
+        });
+    
+        // 선택된 컬럼에 한해서만 isImageURL = true
+        var selectedColumn = columns.find((col) => col.fieldName === fieldName);
+        selectedColumn.isImageURL = true;
+      };
   })
 
 };
@@ -193,19 +207,7 @@
   // };
 
   // 이미지 컬럼 선택 시 실행 될 함수
-  var onSelectImageColumn = (fieldName, idx) => {
-    // 버튼 선택 효과 (outline-primary -> primary)
-    $("input[id^='imgcol-']").attr("class", "btn btn-outline-primary btn-sm");
-    $("#imgcol-" + idx).attr("class", "btn btn-primary btn-sm");
-    // 다른 걸 이미 선택했었을 수도 있으니 isImageURL 값을 모두 false로 초기화
-    columns.forEach((col) => {
-      col.isImageURL = false;
-    });
 
-    // 선택된 컬럼에 한해서만 isImageURL = true
-    var selectedColumn = columns.find((col) => col.fieldName === fieldName);
-    selectedColumn.isImageURL = true;
-  };
 
   // 완료 버튼 클릭 시 실행 될 함수
   var finishDialog = () => {
