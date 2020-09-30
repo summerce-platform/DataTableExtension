@@ -120,15 +120,13 @@
     ///select box에 컬럼 넣기
       $("#select-column").append('<option value='+column.fieldName+'>'+column.fieldName+'</option>');
   });
-  // $("#select-column").click(function(){
-  //   var myColumn = $("#select-column").val();
-  //   console.log(myColumn);
+  $("#submitCol").click(function(){
+    var myColumn = $("#select-column option:selected").val();
+    console.log(myColumn);
 
-  // })
+  })
 
 };
-var myColumn = $("#select-column").val();
-console.log(myColumn);
 
 
   
