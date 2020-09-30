@@ -122,7 +122,8 @@
       
   });
   $("#submitCol").click(function(){
-    var myColumn = $("#select-column").val();
+    var myColumn1 = $("#select-column").val();
+    var myColumn = JSON.stringify(myColumn1);
     console.log(myColumn);
     // console.log($("#select-column").val());
     $("#test1").text(myColumn);
