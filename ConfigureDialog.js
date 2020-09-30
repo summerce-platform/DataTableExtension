@@ -130,9 +130,9 @@
 
         ///if문 만들어서 다
     // 찾은 워크시트에서 컬럼 정보 가져오기
-    return await worksheet.getSummaryDataAsync().then((summary) => {
+
       // 각 컬럼을
-      summary.columns.forEach((column) => {
+      columns.forEach((myColumn) => {
         // 전역변수에 저장
         columns.push({
           fieldName: myColumn,
@@ -140,10 +140,7 @@
           altText: null,
         });
       });
-////컬럼정보 가져온거 기반해서 컬럼 선택하기
-        
-        // console.log(summary.columns);
-    });
+
   })
 
 };
