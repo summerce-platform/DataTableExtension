@@ -122,8 +122,7 @@
       
   });
   $("#submitCol").click(function(){
-    var myColumn1 = $("#select-column").val();
-    var myColumn = JSON.stringify(myColumn1);
+    var myColumn = $("#select-column").val();
     console.log(myColumn);
     // console.log($("#select-column").val());
     $("#test1").text(myColumn);
@@ -142,7 +141,7 @@
           altText: null,
         });
       });
-      $("#test2").text(columns);
+      $("#test2").text(JSON.stringify(columns));
 ///이미지 버튼 생성하기
       var targetArea = $("#select-image-column");
       // 이미 버튼이 존재할 경우 삭제
