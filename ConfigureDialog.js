@@ -3,7 +3,7 @@
   const columnsSettingsKey = 'selectedColumn';
   var selectedWorksheet;
   var columns = [];
-  var myCol = [];
+
   $(document).ready(function () {
     tableau.extensions.initializeDialogAsync().then(function (openPayload) {
       // openPayload에 부모가 담아준 값이 들어있지만 사용하지 않음
@@ -126,89 +126,50 @@
     console.log(myColumn);
     // console.log($("#select-column").val());
     $("#test1").text(myColumn);
-
-
-        ///if문 만들어서 다
-    // 찾은 워크시트에서 컬럼 정보 가져오기
-    
-      // 각 컬럼을
-      myCol.forEach((myColumn) => {
-        // 전역변수에 저장
-        myCol = [];
-        myCol.push({
-          fieldName: myColumn,
-          isImageURL: false,
-          altText: null,
-        });
-      });
-      $("#test2").text(JSON.stringify(myCol));
-///이미지 버튼 생성하기
-      var targetArea = $("#select-image-column");
-      // 이미 버튼이 존재할 경우 삭제
-      targetArea.empty();
-      /*
-        each column = {
-          dataType : "string"
-          fieldName : "GOODS_CODE"
-          index : 0
-          isReferenced : true
-        }
-      */
-      myCol.forEach((myCol, idx) => {
-        // 버튼 생성
-        let btn = makeButton(myCol.fieldName, "imgcol-", idx, () =>
-          // 버튼 클릭 시 실행 될 함수
-          onSelectImageColumn(myCol.fieldName, idx)
-        );
-        // 버튼 삽입
-        targetArea.append(btn);
-      });
-
-      var onSelectImageColumn = (fieldName, idx) => {
-        // 버튼 선택 효과 (outline-primary -> primary)
-        $("input[id^='imgcol-']").attr("class", "btn btn-outline-primary btn-sm");
-        $("#imgcol-" + idx).attr("class", "btn btn-primary btn-sm");
-        // 다른 걸 이미 선택했었을 수도 있으니 isImageURL 값을 모두 false로 초기화
-        columns.forEach((col) => {
-          col.isImageURL = false;
-        });
-    
-        // 선택된 컬럼에 한해서만 isImageURL = true
-        var selectedColumn = columns.find((col) => col.fieldName === fieldName);
-        selectedColumn.isImageURL = true;
-      };
   })
 
 };
 
 
   
-  // // 이미지 선택 컬럼 버튼들 생성
-  // var selectImageColumnButtons = () => {
-  //   var targetArea = $("#select-image-column");
-  //   // 이미 버튼이 존재할 경우 삭제
-  //   targetArea.empty();
-  //   /*
-  //     each column = {
-  //       dataType : "string"
-  //       fieldName : "GOODS_CODE"
-  //       index : 0
-  //       isReferenced : true
-  //     }
-  //   */
-  //   columns.forEach((column, idx) => {
-  //     // 버튼 생성
-  //     let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
-  //       // 버튼 클릭 시 실행 될 함수
-  //       onSelectImageColumn(column.fieldName, idx)
-  //     );
-  //     // 버튼 삽입
-  //     targetArea.append(btn);
-  //   });
-  // };
+  // 이미지 선택 컬럼 버튼들 생성
+  var selectImageColumnButtons = () => {
+    var targetArea = $("#select-image-column");
+    // 이미 버튼이 존재할 경우 삭제
+    targetArea.empty();
+    /*
+      each column = {
+        dataType : "string"
+        fieldName : "GOODS_CODE"
+        index : 0
+        isReferenced : true
+      }
+    */
+    myColumn.forEach((column, idx) => {
+      // 버튼 생성
+      let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
+        // 버튼 클릭 시 실행 될 함수
+        onSelectImageColumn(column.fieldName, idx)
+      );
+      // 버튼 삽입
+      targetArea.append(btn);
+    });
+  };
 
   // 이미지 컬럼 선택 시 실행 될 함수
+  var onSelectImageColumn = (fieldName, idx) => {
+    // 버튼 선택 효과 (outline-primary -> primary)
+    $("input[id^='imgcol-']").attr("class", "btn btn-outline-primary btn-sm");
+    $("#imgcol-" + idx).attr("class", "btn btn-primary btn-sm");
+    // 다른 걸 이미 선택했었을 수도 있으니 isImageURL 값을 모두 false로 초기화
+    columns.forEach((col) => {
+      col.isImageURL = false;
+    });
 
+    // 선택된 컬럼에 한해서만 isImageURL = true
+    var selectedColumn = columns.find((col) => col.fieldName === fieldName);
+    selectedColumn.isImageURL = true;
+  };
 
   // 완료 버튼 클릭 시 실행 될 함수
   var finishDialog = () => {
@@ -235,11 +196,14 @@
       }
 
       // closePayload에 지금껏 선택했던 sheetName과 columns 담기
-      var closePayload = {
-        sheetName: selectedWorksheet,
-        columns: columns,
-      };
-      
+      if(column.fieldName==myColumn){
+        var closePayload = {
+          sheetName: selectedWorksheet,
+          columns: columns
+        };
+        
+      }
+ 
       // 다이얼로그를 종료하며 closePayload 정보를 담아 부모 페이지에 전송
       // let currentSettings = tableau.extensions.settings.getAll();
       // tableau.extensions.settings.saveAsync().then((newSavedSettings)=>{
