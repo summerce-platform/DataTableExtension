@@ -136,7 +136,7 @@
         // 전역변수에 저장
         columns = [];
         columns.push({
-          fieldName: myColumn.fieldName,
+          fieldName: myColumn,
           isImageURL: false,
           altText: null,
         });
