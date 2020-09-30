@@ -144,7 +144,8 @@
         isReferenced : true
       }
     */
-    columns.forEach((column, idx) => {
+
+    myColumn.forEach((column, idx) => {
       // 버튼 생성
       let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
         // 버튼 클릭 시 실행 될 함수
