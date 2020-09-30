@@ -120,8 +120,12 @@
     ///select box에 컬럼 넣기
       $("#select-column").append('<option value='+column.fieldName+'>'+column.fieldName+'</option>');
   });
-  var myColumn = $("#select-column").val();
-  console.log(myColumn);
+  $("#select-column").click(function(){
+    var myColumn = $("#select-column option:selected").val();
+    console.log(myColumn);
+
+  })
+
 };
 
 
