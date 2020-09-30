@@ -118,12 +118,12 @@
  $("#select-column").find('option').remove();
   columns.forEach((column, idx) => {
     ///select box에 컬럼 넣기
-      $("#select-column").append('<option value='+column.fieldName+'>'+column.fieldName+'</option>');
+      $("#select-column").append('<option value="'+column.fieldName+'">'+column.fieldName+'</option>');
   });
   $("#submitCol").click(function(){
-    // var myColumn = $("#select-column").val();
-    // console.log(myColumn);
-    console.log($("#select-column").val());
+    var myColumn = $("#select-column").val();
+    console.log(myColumn);
+    // console.log($("#select-column").val());
   })
 
 };
