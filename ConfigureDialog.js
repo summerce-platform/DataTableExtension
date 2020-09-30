@@ -124,6 +124,7 @@
     var myColumn = $("#select-column").val();
     console.log(myColumn);
     // console.log($("#select-column").val());
+    $("#test1").text(myColumn);
   })
 
 };
