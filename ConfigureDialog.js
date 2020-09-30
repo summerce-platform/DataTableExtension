@@ -121,7 +121,7 @@
       $("#select-column").append('<option value='+column.fieldName+'>'+column.fieldName+'</option>');
   });
   $("#submitCol").click(function(){
-    var myColumn = $("#select-column option:selected").val();
+    var myColumn = $("#select-column").val();
     console.log(myColumn);
 
   })
