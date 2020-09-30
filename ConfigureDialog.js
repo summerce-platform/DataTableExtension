@@ -132,11 +132,11 @@
     // 찾은 워크시트에서 컬럼 정보 가져오기
     
       // 각 컬럼을
-      columns.forEach((myColumn) => {
+      columns.forEach((column) => {
         // 전역변수에 저장
         columns = [];
         columns.push({
-          fieldName: myColumn,
+          fieldName: column.fieldName,
           isImageURL: false,
           altText: null,
         });
