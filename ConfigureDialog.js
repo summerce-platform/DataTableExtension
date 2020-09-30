@@ -84,20 +84,47 @@
         });
       });
 ////컬럼정보 가져온거 기반해서 컬럼 선택하기
-
-        console.log(summary.fieldName);
-        console.log(JSON.stringify(summary.fieldName));
-
+        
+        // console.log(summary.columns);
     });
   };
 
   // 세부 설정 영역 표시
   var showSettingDetailsArea = () => {
     $("#select-image-column-area").show();
+    $("#select-column-area").show();
+
     $("#select-layout-area").show();
     // id가 "select-image-column"인 영역에 버튼들 생성
     selectImageColumnButtons();
+    selectColumnButtons();
   };
+
+
+///
+ // 이미지 선택 컬럼 버튼들 생성
+ var selectColumnButtons = () => {
+  var targetArea2 = $("#select-column");
+  // 이미 버튼이 존재할 경우 삭제
+  targetArea2.empty();
+  /*
+    each column = {
+      dataType : "string"
+      fieldName : "GOODS_CODE"
+      index : 0
+      isReferenced : true
+    }
+  */
+ $("#select-column").find('option').remove();
+  columns.forEach((column, idx) => {
+    ///select box에 컬럼 넣기
+      $("#select-column").append('<option value="">'+column[idx]+'</option>');
+  });
+  var myColumn = $("#select-column").val();
+  console.log(myColumn);
+};
+
+
 
   
   // 이미지 선택 컬럼 버튼들 생성
