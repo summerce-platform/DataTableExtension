@@ -3,7 +3,7 @@
   const columnsSettingsKey = 'selectedColumn';
   var selectedWorksheet;
   var columns = [];
-
+  var myCol = [];
   $(document).ready(function () {
     tableau.extensions.initializeDialogAsync().then(function (openPayload) {
       // openPayload에 부모가 담아준 값이 들어있지만 사용하지 않음
@@ -63,7 +63,7 @@
   var getColumns = async () => {
     // 다른 워크시트를 선택한 적이 있다면 columns 전역변수가 비어있지 않으므로 초기화
     columns = [];
-
+    myCol=[];
     // 워크시트 찾기
     const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
     var worksheet = worksheets.find(
@@ -102,10 +102,10 @@
 
 
 ///
- // 이미지 선택 컬럼 버튼들 생성
+ //  컬럼 옵션 생성
  var selectColumnButtons = () => {
   var targetArea2 = $("#select-column");
-  // 이미 버튼이 존재할 경우 삭제
+  // 이미 옵션이 존재할 경우 삭제
   targetArea2.empty();
   /*
     each column = {
@@ -119,12 +119,19 @@
   columns.forEach((column, idx) => {
     ///select box에 컬럼 넣기
       $("#select-column").append('<option value="'+column.fieldName+'">'+column.fieldName+'</option>');
+      myCol.push({
+        fieldName: myColumn,
+        isImageURL: false,
+        altText: null,
+      });
   });
   $("#submitCol").click(function(){
     var myColumn = $("#select-column").val();
     console.log(myColumn);
     // console.log($("#select-column").val());
     $("#test1").text(myColumn);
+
+
   })
 
 };
@@ -144,7 +151,7 @@
         isReferenced : true
       }
     */
-    myColumn.forEach((column, idx) => {
+    myCol.forEach((column, idx) => {
       // 버튼 생성
       let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
         // 버튼 클릭 시 실행 될 함수
