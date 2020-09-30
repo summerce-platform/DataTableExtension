@@ -3,7 +3,7 @@
   const columnsSettingsKey = 'selectedColumn';
   var selectedWorksheet;
   var columns = [];
-
+  var myCol = [];
   $(document).ready(function () {
     tableau.extensions.initializeDialogAsync().then(function (openPayload) {
       // openPayload에 부모가 담아준 값이 들어있지만 사용하지 않음
@@ -132,16 +132,16 @@
     // 찾은 워크시트에서 컬럼 정보 가져오기
     
       // 각 컬럼을
-      columns.forEach((column) => {
+      myCol.forEach((myColumn) => {
         // 전역변수에 저장
-        columns = [];
-        columns.push({
-          fieldName: column.fieldName,
+        myCol = [];
+        myCol.push({
+          fieldName: myColumn,
           isImageURL: false,
           altText: null,
         });
       });
-      $("#test2").text(JSON.stringify(columns));
+      $("#test2").text(JSON.stringify(myCol));
 ///이미지 버튼 생성하기
       var targetArea = $("#select-image-column");
       // 이미 버튼이 존재할 경우 삭제
@@ -154,11 +154,11 @@
           isReferenced : true
         }
       */
-      columns.forEach((column, idx) => {
+      myCol.forEach((myCol, idx) => {
         // 버튼 생성
-        let btn = makeButton(column.fieldName, "imgcol-", idx, () =>
+        let btn = makeButton(myCol.fieldName, "imgcol-", idx, () =>
           // 버튼 클릭 시 실행 될 함수
-          onSelectImageColumn(column.fieldName, idx)
+          onSelectImageColumn(myCol.fieldName, idx)
         );
         // 버튼 삽입
         targetArea.append(btn);
