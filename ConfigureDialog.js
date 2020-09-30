@@ -118,8 +118,7 @@
  $("#select-column").find('option').remove();
   columns.forEach((column, idx) => {
     ///select box에 컬럼 넣기
-      var strCol=JSON.stringify(column);
-      $("#select-column").append('<option value="">'+strCol[idx]+'</option>');
+      $("#select-column").append('<option value="">'+column.fieldName[idx]+'</option>');
   });
   var myColumn = $("#select-column").val();
   console.log(myColumn);
