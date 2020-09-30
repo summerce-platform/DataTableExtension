@@ -142,6 +142,7 @@
           altText: null,
         });
       });
+      $("#test2").text(columns);
 ///이미지 버튼 생성하기
       var targetArea = $("#select-image-column");
       // 이미 버튼이 존재할 경우 삭제
