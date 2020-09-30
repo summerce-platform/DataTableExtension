@@ -130,10 +130,11 @@
 
         ///if문 만들어서 다
     // 찾은 워크시트에서 컬럼 정보 가져오기
-    var columns = [];
+    
       // 각 컬럼을
       columns.forEach((myColumn) => {
         // 전역변수에 저장
+        columns = [];
         columns.push({
           fieldName: myColumn,
           isImageURL: false,
