@@ -91,13 +91,12 @@
 
   // 세부 설정 영역 표시
   var showSettingDetailsArea = () => {
-    $("#select-image-column-area").show();
+
     $("#select-column-area").show();
 
     $("#select-layout-area").show();
     // id가 "select-image-column"인 영역에 버튼들 생성
     selectColumnButtons();
-    selectImageColumnButtons();
   };
 
 
@@ -136,7 +135,10 @@
  
     console.log(myColumn);
     // console.log($("#select-column").val());
-    $("#test1").text(columns);
+    $("#test1").text(column.fieldName);
+    $("#select-image-column-area").show();  
+      selectImageColumnButtons();
+
   })
 
 };
