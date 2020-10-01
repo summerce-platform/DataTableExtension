@@ -149,10 +149,13 @@
           }
           형태로 변환하게 됨
         */
+       console.log(row);
+       console.log(payload.columns);
         row.forEach((eachColumn, idx) => {
           reformedRow[payload.columns[idx].fieldName] =
             eachColumn.formattedValue;
         });
+      
         // 변환 된 형태대로 데이터 배열에 저장
         data.push(reformedRow);
       });
