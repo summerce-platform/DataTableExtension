@@ -123,14 +123,14 @@
   });
   $("#submitCol").click(function(){
     var myColumn = $("#select-column").val();
-    columns.forEach((column)=>{
-      if(column.fieldName!=myColumn){
-        columns.pop({
-          fieldName: column.fieldName,
+    columns=[];
+    columns.forEach((column,idx)=>{
+        columns.push({
+          fieldName: myColumn,
           isImageURL: false,
           altText: null,
         });
-      }
+      
 
     });
  
