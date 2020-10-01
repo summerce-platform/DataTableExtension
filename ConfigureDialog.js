@@ -118,6 +118,10 @@
 
     console.log(columns);
     console.log(myColumn);
+    columns = columns.filter(column=>
+      myColumn.includes(column.fieldName));
+
+    console.log("필터링후: "+columns);
     // console.log($("#select-column").val());
     // $("#test1").text(columns);
     selectImageColumnButtons();
