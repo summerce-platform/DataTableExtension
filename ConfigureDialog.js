@@ -122,17 +122,11 @@
   });
   $("#submitCol").click(function(){
     var myColumn = $("#select-column").val();
-    columns=[];
-    columns.forEach((column,idx)=>{
-        columns.push({
-          fieldName: myColumn,
-          isImageURL: false,
-          altText: null,
-        });
-      
-
+    var filterCol = columns.filter(function(column,idx){
+      return column.fieldName==myColumn;
     });
- 
+      
+    console.log(filterCol);
     console.log(myColumn);
     // console.log($("#select-column").val());
     $("#test1").text(column.fieldName);
