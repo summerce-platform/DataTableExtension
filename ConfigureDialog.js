@@ -125,7 +125,7 @@
     
     console.log(myColumn);
     // console.log($("#select-column").val());
-    $("#test1").text(myColumn);
+    $("#test1").text(column);
   })
 
 };
