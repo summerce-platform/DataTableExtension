@@ -196,13 +196,12 @@
       }
 
       // closePayload에 지금껏 선택했던 sheetName과 columns 담기
-      if(column.fieldName==myColumn){
         var closePayload = {
           sheetName: selectedWorksheet,
           columns: columns
         }
         
-      };
+
  
       
       // 다이얼로그를 종료하며 closePayload 정보를 담아 부모 페이지에 전송
