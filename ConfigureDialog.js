@@ -75,9 +75,10 @@
     // 찾은 워크시트에서 컬럼 정보 가져오기
     return await worksheet.getSummaryDataAsync().then((summary) => {
       // 각 컬럼을
-      summary.columns.forEach((column) => {
+      summary.columns.forEach((column,index) => {
         // 전역변수에 저장
         columns.push({
+          index : index,
           fieldName: column.fieldName,
           isImageURL: false,
           altText: null,
