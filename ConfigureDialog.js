@@ -118,14 +118,25 @@
  $("#select-column").find('option').remove();
   columns.forEach((column, idx) => {
     ///select box에 컬럼 넣기
+        
       $("#select-column").append('<option value="'+column.fieldName+'">'+column.fieldName+'</option>');
   });
   $("#submitCol").click(function(){
     var myColumn = $("#select-column").val();
-    
+    columns.forEach((column)=>{
+      if(column.fieldName!=myColumn){
+        columns.pop({
+          fieldName: column.fieldName,
+          isImageURL: false,
+          altText: null,
+        });
+      }
+
+    });
+ 
     console.log(myColumn);
     // console.log($("#select-column").val());
-    $("#test1").text(column);
+    $("#test1").text(columns);
   })
 
 };
