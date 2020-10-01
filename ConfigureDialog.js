@@ -91,12 +91,13 @@
 
   // 세부 설정 영역 표시
   var showSettingDetailsArea = () => {
-
+    $("#select-image-column-area").show();
     $("#select-column-area").show();
 
     $("#select-layout-area").show();
     // id가 "select-image-column"인 영역에 버튼들 생성
     selectColumnButtons();
+    selectImageColumnButtons();
   };
 
 
@@ -106,14 +107,7 @@
   var targetArea2 = $("#select-column");
   // 이미 옵션이 존재할 경우 삭제
   targetArea2.empty();
-  /*
-    each column = {
-      dataType : "string"
-      fieldName : "GOODS_CODE"
-      index : 0
-      isReferenced : true
-    }
-  */
+
  $("#select-column").find('option').remove();
   columns.forEach((column, idx) => {
     ///select box에 컬럼 넣기
@@ -122,17 +116,11 @@
   });
   $("#submitCol").click(function(){
     var myColumn = $("#select-column").val();
-    var filterCol = columns.filter(x=>{
-      return x.fieldName == myColumn
-    });
-      
-    console.log(filterCol);
+
+ 
     console.log(myColumn);
     // console.log($("#select-column").val());
-    $("#test1").text(column.fieldName);
-    $("#select-image-column-area").show();  
-      selectImageColumnButtons();
-
+    // $("#test1").text(columns);
   })
 
 };
