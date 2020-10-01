@@ -123,7 +123,7 @@
   $("#submitCol").click(function(){
     var myColumn = $("#select-column").val();
     var filterCol = columns.filter(function(myColumn){
-      return column.fieldName==myColumn;
+      return columns.fieldName==myColumn;
     });
       
     console.log(filterCol);
