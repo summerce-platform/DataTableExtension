@@ -122,8 +122,8 @@
   });
   $("#submitCol").click(function(){
     var myColumn = $("#select-column").val();
-    var filterCol = columns.filter(function(myColumn){
-      return columns.fieldName==myColumn;
+    var filterCol = columns.filter(function(column,idx){
+      return column.fieldName==myColumn;
     });
       
     console.log(filterCol);
