@@ -83,6 +83,8 @@
           isImageURL: false,
           altText: null,
         });
+        console.log(summary.columns);
+
       });
 ////컬럼정보 가져온거 기반해서 컬럼 선택하기
         
