@@ -151,9 +151,12 @@
         */
        console.log(row);
        console.log(payload.columns);
-        row.forEach((eachColumn, idx) => {
-          reformedRow[payload.columns[idx].fieldName] =
-            eachColumn.formattedValue;
+        // row.forEach((eachColumn, idx) => {
+        //   reformedRow[payload.columns[idx].fieldName] =
+        //     eachColumn.formattedValue;
+        // });
+        payload.columns.forEach(col => {
+          reformedRow[col.fieldName]= row[col.index].formattedValue
         });
       
         // 변환 된 형태대로 데이터 배열에 저장
