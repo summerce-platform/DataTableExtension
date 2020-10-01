@@ -97,7 +97,6 @@
     $("#select-layout-area").show();
     // id가 "select-image-column"인 영역에 버튼들 생성
     selectColumnButtons();
-    selectImageColumnButtons();
   };
 
 
@@ -117,10 +116,12 @@
   $("#submitCol").click(function(){
     var myColumn = $("#select-column").val();
 
- 
+    console.log(columns);
     console.log(myColumn);
     // console.log($("#select-column").val());
     // $("#test1").text(columns);
+    selectImageColumnButtons();
+
   })
 
 };
