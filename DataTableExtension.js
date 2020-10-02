@@ -192,6 +192,7 @@
       if (meta.isImageURL) {
         // 이미지를 표시하도록 하고
         col["render"] = function (data, type, row) {
+            console.log(data);
           if (type === "display") {
             return imageTag({
               src: data,
